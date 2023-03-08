@@ -25,7 +25,7 @@ Download the App from DockerHub
 You can just download the build docker image from Dockerhub.
 
 ```
-docker pull waziup/wazigate-jupyterlab
+docker pull waziup/wazigate-jupyterlab:64
 ```
 
 ___________________________________________________________________________________________________________________
@@ -85,7 +85,7 @@ ________________________________________________________________________________
 Contained packages
 ------------------
 
-Currently the container is shipped with "python:3.9.9-slim-buster" as base image. Due to the fact that there is no version of miniconda and the conda-forge channel, it will be downgraded to 3.7.12 or 3.6. 
+Currently the container is shipped with "python:3.8.16-slim-buster" as base image.
 
 As a package manager **pip** is recommended, for non-python packages use **apt-get** .
 
