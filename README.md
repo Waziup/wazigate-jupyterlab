@@ -8,13 +8,12 @@ Description
 
 Waziup/wazigate-jupyterlab is an Application for the WaziGate, created as Docker image. It contains the basic packages needed for data science tasks. 
 
-**Link to Github repository:**	[waziup/wazigate-jupyterlab](https://github.com/Waziup/wazigate-jupyterlab_armv7l)
+**Link to Github repository:**	[waziup/wazigate-jupyterlab](https://github.com/Waziup/wazigate-jupyterlab)
 
 ![Screeshot of Jupyterlab with linear-regression-demo.ipynb](./media/notebook.png)
 
 There is no login needed for this jupyterlab, so it is not recommended to deploy the Application in public networks. In the future it will run on Unix sockets, to solve this problem.
-
-Till now the container is still on 32-bit (armv7l), this platform is deprecated and not well maintained in 2021. Later it will be upgraded to 64-bit (armv8), which is well maintained.
+The application image is now updated to 64-bit (armv8).
   
 
 ___________________________________________________________________________________________________________________
@@ -25,7 +24,7 @@ Download the App from DockerHub
 You can just download the build docker image from Dockerhub.
 
 ```
-docker pull waziup/wazigate-jupyterlab
+docker pull waziup/wazigate-jupyterlab:64
 ```
 
 ___________________________________________________________________________________________________________________
@@ -44,7 +43,7 @@ git clone https://github.com/Waziup/wazigate-jupyterlab_armv7l.git
 2. Install docker and issue the following commands
 
 ```
-docker buildx create --name rpibuilder --platform linux/arm/v7
+docker buildx create --name rpibuilder --platform linux/arm64
 docker buildx use rpibuilder 
 docker buildx inspect --bootstrap
 docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
@@ -59,7 +58,7 @@ cd wazigate-jupyterlab_armv7l
 4. Issue the following command to build the docker image from the [Dockerfile](https://github.com/Waziup/wazigate-jupyterlab_armv7l/blob/main/Dockerfile "Dockerfile"):
 
 ```
-docker buildx build --platform linux/arm/v7 -t waziup/wazigate-jupyterlab_armv7l:latest --load .
+docker buildx build --platform linux/arm64/v8 -t waziup/wazigate-jupyterlab:64 --load .
 ```
 
 5. To copy the image via SSH to the raspberry pi with the following command:
@@ -71,7 +70,7 @@ docker save <id_of_build_image> | gzip | pv | ssh pi@<ip_of_pi_in_local_network>
 6. It can occur that the name of the repository is lost, so tag the image appropriate to the docker-compose.yml
 
 ```
-docker tag <id_of_build_image> waziup/wazigate-jupyterlab_armv7l:latest
+docker tag <id_of_build_image> waziup/wazigate-jupyterlab:64
 ```
 
 7. Afterwards, start the application with via the UI of the WaziGate or run the following command, to see the logs in console:
@@ -85,7 +84,7 @@ ________________________________________________________________________________
 Contained packages
 ------------------
 
-Currently the container is shipped with "python:3.9.9-slim-buster" as base image. Due to the fact that there is no version of miniconda and the conda-forge channel, it will be downgraded to 3.7.12 or 3.6. 
+Currently the container is shipped with "python:3.8.16-slim-buster" as base image.
 
 As a package manager **pip** is recommended, for non-python packages use **apt-get** .
 
