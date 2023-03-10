@@ -8,14 +8,31 @@
 
 	<title>Jupyter Lab on Wazigate with Raspberry PI</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<script>
+		window.onload = function(){
+			var link = "http://" + location.host + ":9000"
+			document.getElementById('linkImage').setAttribute("href", link);
+			window.open(link, '_blank').focus();
+		};
+	</script>
 </head>
 
 <body>
-	<center><h1>A new tab or window should open showing jupyterlab...</h1></body><br>
-	If not, it might be blocked by your browser, check your Adblock extensions.</center>
-	<script>
-		window.open("http://" + location.host + ":9000", '_blank').focus();
-	</script>
+	<center>
+		<h1>
+			A new tab or window should open showing jupyterlab...
+		</h1>
+		<br>
+			If not, it might be blocked by your browser, check your Adblock extensions.
+		<br>
+		<br>
+		<p>
+			<a id="linkImage" href=""><img src="../media/logo.svg" style="width: 50%" target="_blank"></a>
+		</p>
+		<br>
+		(...click on the jupyterlab logo, if no new tab or window opens or if you want to reopen the application)
+	</center>
 </body>
 
 </html>
